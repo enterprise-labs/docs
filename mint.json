@@ -28,7 +28,7 @@
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "/api-reference/openapi.json",
+      "openapi": "https://hss.catou.id.vn/v3/api-docs",
       "url": "api-reference",
       "icon": "square-terminal"
     }
