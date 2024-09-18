@@ -1,1 +1,2657 @@
-{"openapi":"3.0.1","info":{"title":"OpenAPI definition","version":"v0"},"servers":[{"url":"http://localhost:8080","description":"Generated server url"}],"paths":{"/api/user/me":{"get":{"tags":["User"],"summary":"Get this session user","operationId":"userSessionInfo","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UserDTO"}}}}}},"put":{"tags":["User"],"summary":"Update this session user","operationId":"userSessionUpdate","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserRegisterDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UserDTO"}}}}}}},"/api/receptionist/order/{id}":{"get":{"tags":["Order"],"summary":"Get an order","operationId":"getOne_1","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderResponseDTO"}}}}}},"put":{"tags":["Order"],"summary":"Update an order","operationId":"update","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/SprayOrderRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderResponseDTO"}}}}}},"delete":{"tags":["Order"],"summary":"Delete an order","description":"Currently not working","operationId":"delete","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderResponseDTO"}}}}}}},"/api/receptionist/feedback/{id}":{"get":{"tags":["Feedback"],"summary":"Get a feedback","operationId":"getByOrderID","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}},"put":{"tags":["Feedback"],"summary":"Update a feedback","operationId":"update_1","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/FeedbackRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}},"delete":{"tags":["Feedback"],"summary":"Delete a feedback","operationId":"delete_1","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}}},"/api/farmer/order/{id}":{"get":{"tags":["Order"],"summary":"Get an order","operationId":"getOne_2","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}},"put":{"tags":["Order"],"summary":"Update an order","operationId":"update_2","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}}},"/api/farmer/feedback/{id}":{"get":{"tags":["Feedback"],"summary":"Get a feedback","operationId":"getByOrderID_1","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}},"put":{"tags":["Feedback"],"summary":"Update a feedback","operationId":"update_3","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/FeedbackRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}}},"/api/common/crop/{id}":{"put":{"tags":["Crop"],"summary":"Update crop","operationId":"update_4","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CropDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CropDTO"}}}}}},"delete":{"tags":["Crop"],"summary":"Delete crop","operationId":"delete_2","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CropDTO"}}}}}}},"/api/user/register":{"post":{"tags":["User"],"summary":"Create a new user","operationId":"register","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserRegisterDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UserDTO"}}}}}}},"/api/user/login":{"post":{"tags":["User"],"summary":"Login and create a new session","operationId":"login","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserLoginDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UserLoginResponseDTO"}}}}}}},"/api/user/":{"get":{"tags":["User"],"summary":"Get all users","operationId":"getAll","parameters":[{"name":"role","in":"query","required":false,"schema":{"type":"string","enum":["farmer","receptionist","sprayer","admin"]}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelUserDTO"}}}}}},"post":{"tags":["User"],"summary":"Get all user by parameters","description":"Currently, only phoneNumber is mapped","operationId":"getAllByPhoneNumber","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelUserDTO"}}}}}}},"/api/user":{"get":{"tags":["User"],"summary":"Get all users","operationId":"getAll_1","parameters":[{"name":"role","in":"query","required":false,"schema":{"type":"string","enum":["farmer","receptionist","sprayer","admin"]}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelUserDTO"}}}}}},"post":{"tags":["User"],"summary":"Get all user by parameters","description":"Currently, only phoneNumber is mapped","operationId":"getAllByPhoneNumber_1","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelUserDTO"}}}}}}},"/api/sprayer/order/{id}/paid":{"post":{"tags":["Order"],"summary":"Mark payment status as complete on cash payment","operationId":"paid","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}}},"/api/sprayer/order/{id}/confirm":{"post":{"tags":["Order"],"summary":"Confirm assigned order","operationId":"confirm","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}}},"/api/receptionist/order/{id}/sprayers/{sId}":{"post":{"tags":["Order"],"summary":"Assign sprayer to order","operationId":"assign","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}},{"name":"sId","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UserDTO"}}}}}},"delete":{"tags":["Order"],"summary":"Unassign sprayer from order","operationId":"unassign","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}},{"name":"sId","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UserDTO"}}}}}}},"/api/receptionist/order":{"get":{"tags":["Order"],"summary":"Get all orders","operationId":"getAll_5","parameters":[{"name":"orderStatus","in":"query","required":false,"schema":{"type":"string","enum":["pending","cancelled","confirmed","assigned","in_progress","completed"]}},{"name":"paymentMethod","in":"query","required":false,"schema":{"type":"string","enum":["cash","visa","mastercard"]}},{"name":"cropType","in":"query","required":false,"schema":{"type":"integer","format":"int64"}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelSprayOrderResponseDTO"}}}}}},"post":{"tags":["Order"],"summary":"Create an order","operationId":"create","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/SprayOrderRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderResponseDTO"}}}}}}},"/api/receptionist/order/":{"get":{"tags":["Order"],"summary":"Get all orders","operationId":"getAll_6","parameters":[{"name":"orderStatus","in":"query","required":false,"schema":{"type":"string","enum":["pending","cancelled","confirmed","assigned","in_progress","completed"]}},{"name":"paymentMethod","in":"query","required":false,"schema":{"type":"string","enum":["cash","visa","mastercard"]}},{"name":"cropType","in":"query","required":false,"schema":{"type":"integer","format":"int64"}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelSprayOrderResponseDTO"}}}}}},"post":{"tags":["Order"],"summary":"Create an order","operationId":"create_1","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/SprayOrderRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderResponseDTO"}}}}}}},"/api/receptionist/feedback":{"get":{"tags":["Feedback"],"summary":"Get all feedbacks","operationId":"getAll_7","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelFeedbackResponseDTO"}}}}}},"post":{"tags":["Feedback"],"summary":"Create a feedback","operationId":"create_2","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/FeedbackRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}}},"/api/receptionist/feedback/":{"get":{"tags":["Feedback"],"summary":"Get all feedbacks","operationId":"getAll_8","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelFeedbackResponseDTO"}}}}}},"post":{"tags":["Feedback"],"summary":"Create a feedback","operationId":"create_3","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/FeedbackRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}}},"/api/farmer/order/{id}/confirm":{"post":{"tags":["Order"],"summary":"Confirm an on-going order","operationId":"confirm_1","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}}},"/api/farmer/order/":{"get":{"tags":["Order"],"summary":"Get all orders","operationId":"getAll_10","parameters":[{"name":"orderStatus","in":"query","required":false,"schema":{"type":"string","enum":["pending","cancelled","confirmed","assigned","in_progress","completed"]}},{"name":"paymentMethod","in":"query","required":false,"schema":{"type":"string","enum":["cash","visa","mastercard"]}},{"name":"cropType","in":"query","required":false,"schema":{"type":"integer","format":"int64"}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelSprayOrderFarmerResponseDTO"}}}}}},"post":{"tags":["Order"],"summary":"Create a new order","operationId":"create_4","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}}},"/api/farmer/order":{"get":{"tags":["Order"],"summary":"Get all orders","operationId":"getAll_11","parameters":[{"name":"orderStatus","in":"query","required":false,"schema":{"type":"string","enum":["pending","cancelled","confirmed","assigned","in_progress","completed"]}},{"name":"paymentMethod","in":"query","required":false,"schema":{"type":"string","enum":["cash","visa","mastercard"]}},{"name":"cropType","in":"query","required":false,"schema":{"type":"integer","format":"int64"}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelSprayOrderFarmerResponseDTO"}}}}}},"post":{"tags":["Order"],"summary":"Create a new order","operationId":"create_5","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}}},"/api/farmer/feedback/":{"get":{"tags":["Feedback"],"summary":"Get all feedbacks","operationId":"getAll_12","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelFeedbackResponseDTO"}}}}}},"post":{"tags":["Feedback"],"summary":"Create a feedback","operationId":"create_6","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/FeedbackRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}}},"/api/farmer/feedback":{"get":{"tags":["Feedback"],"summary":"Get all feedbacks","operationId":"getAll_13","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelFeedbackResponseDTO"}}}}}},"post":{"tags":["Feedback"],"summary":"Create a feedback","operationId":"create_7","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/FeedbackRequestDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/FeedbackResponseDTO"}}}}}}},"/api/common/crop/":{"get":{"tags":["Crop"],"summary":"Get all crops","operationId":"getAll_18","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/CropDTO"}}}}}}},"post":{"tags":["Crop"],"summary":"Add crop","operationId":"create_8","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CropDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CropDTO"}}}}}}},"/api/common/crop":{"get":{"tags":["Crop"],"summary":"Get all crops","operationId":"getAll_19","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/CropDTO"}}}}}}},"post":{"tags":["Crop"],"summary":"Add crop","operationId":"create_9","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CropDTO"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CropDTO"}}}}}}},"/api/user/{id}":{"get":{"tags":["User"],"summary":"Get an user","operationId":"getOne","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UserDTO"}}}}}}},"/api/sprayer/order":{"get":{"tags":["Order"],"summary":"List all orders by logged-in sprayer","operationId":"getAll_2","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelSprayOrderResponseDTO"}}}}}}},"/api/sprayer/order/":{"get":{"tags":["Order"],"summary":"List all orders by logged-in sprayer","operationId":"getAll_3","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelSprayOrderResponseDTO"}}}}}}},"/api/receptionist/order/{id}/sprayers":{"get":{"tags":["Order"],"summary":"List all sprayers by order ID","operationId":"getAll_4","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelUserDTO"}}}}}}},"/api/receptionist/order/{id}/sprayers/recommendation":{"get":{"tags":["Order"],"summary":"Get sprayers assignment recommendation","operationId":"recommendation","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/UserDTO"}}}}}}}},"/api/farmer/order/{id}/sprayers":{"get":{"tags":["Order"],"summary":"List all sprayers by order ID","operationId":"getAll_9","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}},{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelUserDTO"}}}}}}},"/api/farmer/order/{id}/payment-intent":{"get":{"tags":["Order"],"summary":"Create new Stripe payment intent","operationId":"paymentIntent","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PaymentIntentDTO"}}}}}}},"/api/farmer/order/{id}/payment-intent/{secret}":{"get":{"tags":["Order"],"summary":"Verify payment intent to be paid","operationId":"checkPayment","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}},{"name":"secret","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}}}}}}},"/api/common/session":{"get":{"tags":["Session"],"summary":"Get all available sessions","operationId":"getAll_14","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/SessionDTO"}}}}}}}},"/api/common/session/":{"get":{"tags":["Session"],"summary":"Get all available sessions","operationId":"getAll_15","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/SessionDTO"}}}}}}}},"/api/common/notification/stream":{"get":{"tags":["Notification"],"summary":"Subscribe to notifications server-sent events","operationId":"streamEvents","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/SseEmitter"}}}}}}},"/api/common/notification/":{"get":{"tags":["Notification"],"summary":"Get notification by current user","operationId":"getAll_16","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelNotificationResponseDTO"}}}}}}},"/api/common/notification":{"get":{"tags":["Notification"],"summary":"Get notification by current user","operationId":"getAll_17","parameters":[{"name":"pageable","in":"query","required":true,"schema":{"$ref":"#/components/schemas/Pageable"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/PagedModelNotificationResponseDTO"}}}}}}},"/api/common/availability":{"get":{"tags":["Availability"],"summary":"Get order session availability","operationId":"getAvailability","parameters":[{"name":"from","in":"query","required":false,"schema":{"type":"string","format":"date"}},{"name":"to","in":"query","required":false,"schema":{"type":"string","format":"date"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/AvailabilityDTO"}}}}}}}},"/api/common/availability/":{"get":{"tags":["Availability"],"summary":"Get order session availability","operationId":"getAvailability_1","parameters":[{"name":"from","in":"query","required":false,"schema":{"type":"string","format":"date"}},{"name":"to","in":"query","required":false,"schema":{"type":"string","format":"date"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/AvailabilityDTO"}}}}}}}}},"components":{"schemas":{"UserRegisterDTO":{"required":["email","fullName","phoneNumber"],"type":"object","properties":{"email":{"type":"string"},"password":{"type":"string"},"fullName":{"pattern":"^\\p{Lu}\\p{Ll}+(\\p{Lu}\\p{Ll}+)?( \\p{Lu}\\p{Ll}+(\\p{Lu}\\p{Ll}+)?)*$","type":"string"},"phoneNumber":{"pattern":"^(\\+84|0)( ?\\d){9,10}$","type":"string"},"street":{"type":"string"},"city":{"type":"string"},"province":{"type":"string"},"postalCode":{"type":"string"},"expertise":{"type":"string","enum":["apprentice","adept","expert"]},"role":{"type":"string","enum":["farmer","receptionist","sprayer","admin"]},"active":{"type":"boolean"}}},"UserDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"email":{"type":"string"},"fullName":{"type":"string"},"phoneNumber":{"type":"string"},"street":{"type":"string"},"city":{"type":"string"},"province":{"type":"string"},"postalCode":{"type":"string"},"expertise":{"type":"string","enum":["apprentice","adept","expert"]},"role":{"type":"string","enum":["farmer","receptionist","sprayer","admin"]},"active":{"type":"boolean"}}},"CropModel":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"}}},"LocalTime":{"type":"object","properties":{"hour":{"type":"integer","format":"int32"},"minute":{"type":"integer","format":"int32"},"second":{"type":"integer","format":"int32"},"nano":{"type":"integer","format":"int32"}}},"SessionDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"startTime":{"$ref":"#/components/schemas/LocalTime"},"endTime":{"$ref":"#/components/schemas/LocalTime"}}},"SprayOrderRequestDTO":{"required":["area","cropType","date","latitude","location","longitude","orderStatus","paymentMethod","session"],"type":"object","properties":{"farmer":{"$ref":"#/components/schemas/UserDTO"},"receptionist":{"$ref":"#/components/schemas/UserDTO"},"date":{"type":"string","format":"date"},"session":{"$ref":"#/components/schemas/SessionDTO"},"location":{"type":"string"},"latitude":{"type":"number"},"longitude":{"type":"number"},"cropType":{"$ref":"#/components/schemas/CropModel"},"area":{"minimum":1,"type":"number"},"orderStatus":{"type":"string","enum":["pending","cancelled","confirmed","assigned","in_progress","completed"]},"paymentStatus":{"type":"string","enum":["pending","paid","failed"]},"paymentMethod":{"type":"string","enum":["cash","visa","mastercard"]},"completionDate":{"type":"string","format":"date"}}},"SprayOrderResponseDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"farmer":{"$ref":"#/components/schemas/UserDTO"},"receptionist":{"$ref":"#/components/schemas/UserDTO"},"date":{"type":"string","format":"date"},"session":{"$ref":"#/components/schemas/SessionDTO"},"location":{"type":"string"},"latitude":{"type":"number"},"longitude":{"type":"number"},"cropType":{"$ref":"#/components/schemas/CropModel"},"area":{"type":"number"},"cost":{"type":"number"},"orderStatus":{"type":"string","enum":["pending","cancelled","confirmed","assigned","in_progress","completed"]},"paymentStatus":{"type":"string","enum":["pending","paid","failed"]},"paymentMethod":{"type":"string","enum":["cash","visa","mastercard"]},"completionDate":{"type":"string","format":"date"},"confirmed":{"type":"boolean"},"creationDate":{"type":"string","format":"date"}}},"FeedbackRequestDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"order":{"$ref":"#/components/schemas/SprayOrderResponseDTO"},"overallRating":{"maximum":5,"minimum":1,"type":"integer","format":"int32"},"attentiveRating":{"maximum":5,"minimum":1,"type":"integer","format":"int32"},"friendlyRating":{"maximum":5,"minimum":1,"type":"integer","format":"int32"},"professionalRating":{"maximum":5,"minimum":1,"type":"integer","format":"int32"},"text":{"type":"string"}}},"FeedbackResponseDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"order":{"$ref":"#/components/schemas/SprayOrderResponseDTO"},"overallRating":{"type":"integer","format":"int32"},"attentiveRating":{"type":"integer","format":"int32"},"friendlyRating":{"type":"integer","format":"int32"},"professionalRating":{"type":"integer","format":"int32"},"text":{"type":"string"}}},"SprayOrderFarmerRequestDTO":{"required":["area","cropType","date","latitude","location","longitude","paymentMethod","session"],"type":"object","properties":{"date":{"type":"string","format":"date"},"session":{"$ref":"#/components/schemas/SessionDTO"},"location":{"type":"string"},"latitude":{"type":"number"},"longitude":{"type":"number"},"cropType":{"$ref":"#/components/schemas/CropModel"},"area":{"minimum":1,"type":"number"},"paymentMethod":{"type":"string","enum":["cash","visa","mastercard"]},"confirmed":{"type":"boolean"}}},"SprayOrderFarmerResponseDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"receptionist":{"$ref":"#/components/schemas/UserDTO"},"date":{"type":"string","format":"date"},"session":{"$ref":"#/components/schemas/SessionDTO"},"location":{"type":"string"},"latitude":{"type":"number"},"longitude":{"type":"number"},"cropType":{"$ref":"#/components/schemas/CropModel"},"area":{"type":"number"},"cost":{"type":"number"},"orderStatus":{"type":"string","enum":["pending","cancelled","confirmed","assigned","in_progress","completed"]},"paymentStatus":{"type":"string","enum":["pending","paid","failed"]},"paymentMethod":{"type":"string","enum":["cash","visa","mastercard"]},"completionDate":{"type":"string","format":"date"},"confirmed":{"type":"boolean"},"creationDate":{"type":"string","format":"date"}}},"CropDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"}}},"UserLoginDTO":{"required":["password","username"],"type":"object","properties":{"username":{"type":"string"},"password":{"type":"string"}}},"UserLoginResponseDTO":{"type":"object","properties":{"token":{"type":"string"}}},"Pageable":{"type":"object","properties":{"page":{"minimum":0,"type":"integer","format":"int32"},"size":{"minimum":1,"type":"integer","format":"int32"},"sort":{"type":"array","items":{"type":"string"}}}},"PageMetadata":{"type":"object","properties":{"size":{"type":"integer","format":"int64"},"number":{"type":"integer","format":"int64"},"totalElements":{"type":"integer","format":"int64"},"totalPages":{"type":"integer","format":"int64"}}},"PagedModelUserDTO":{"type":"object","properties":{"content":{"type":"array","items":{"$ref":"#/components/schemas/UserDTO"}},"page":{"$ref":"#/components/schemas/PageMetadata"}}},"PagedModelSprayOrderResponseDTO":{"type":"object","properties":{"content":{"type":"array","items":{"$ref":"#/components/schemas/SprayOrderResponseDTO"}},"page":{"$ref":"#/components/schemas/PageMetadata"}}},"PagedModelFeedbackResponseDTO":{"type":"object","properties":{"content":{"type":"array","items":{"$ref":"#/components/schemas/FeedbackResponseDTO"}},"page":{"$ref":"#/components/schemas/PageMetadata"}}},"PaymentIntentDTO":{"type":"object","properties":{"clientSecret":{"type":"string"},"dpmCheckerLink":{"type":"string"}}},"PagedModelSprayOrderFarmerResponseDTO":{"type":"object","properties":{"content":{"type":"array","items":{"$ref":"#/components/schemas/SprayOrderFarmerResponseDTO"}},"page":{"$ref":"#/components/schemas/PageMetadata"}}},"SseEmitter":{"type":"object","properties":{"timeout":{"type":"integer","format":"int64"}}},"NotificationResponseDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"recipient":{"$ref":"#/components/schemas/UserModel"},"order":{"$ref":"#/components/schemas/SprayOrderResponseDTO"},"subject":{"type":"string"},"text":{"type":"string"},"timestamp":{"type":"string","format":"date-time"}}},"PagedModelNotificationResponseDTO":{"type":"object","properties":{"content":{"type":"array","items":{"$ref":"#/components/schemas/NotificationResponseDTO"}},"page":{"$ref":"#/components/schemas/PageMetadata"}}},"UserModel":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"password":{"type":"string"},"email":{"type":"string"},"fullName":{"type":"string"},"phoneNumber":{"type":"string"},"street":{"type":"string"},"city":{"type":"string"},"province":{"type":"string"},"postalCode":{"type":"string"},"expertise":{"type":"string","enum":["apprentice","adept","expert"]},"role":{"type":"string","enum":["farmer","receptionist","sprayer","admin"]},"active":{"type":"boolean"}}},"AvailabilityDTO":{"type":"object","properties":{"date":{"type":"string","format":"date"},"sessionId":{"type":"integer","format":"int64"},"availability":{"type":"integer","format":"int64"}}}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/user/me": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get this session user",
+        "operationId": "userSessionInfo",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["User"],
+        "summary": "Update this session user",
+        "operationId": "userSessionUpdate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/order/{id}": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get an order",
+        "operationId": "getOne_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Order"],
+        "summary": "Update an order",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SprayOrderRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Order"],
+        "summary": "Delete an order",
+        "description": "Currently not working",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/feedback/{id}": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get a feedback",
+        "operationId": "getByOrderID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Feedback"],
+        "summary": "Update a feedback",
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Feedback"],
+        "summary": "Delete a feedback",
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/order/{id}": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get an order",
+        "operationId": "getOne_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Order"],
+        "summary": "Update an order",
+        "operationId": "update_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SprayOrderFarmerRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/feedback/{id}": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get a feedback",
+        "operationId": "getByOrderID_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Feedback"],
+        "summary": "Update a feedback",
+        "operationId": "update_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/crop/{id}": {
+      "put": {
+        "tags": ["Crop"],
+        "summary": "Update crop",
+        "operationId": "update_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CropDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CropDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Crop"],
+        "summary": "Delete crop",
+        "operationId": "delete_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CropDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a new user",
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login and create a new session",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserLoginResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get all users",
+        "operationId": "getAll",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["farmer", "receptionist", "sprayer", "admin"]
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelUserDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "Get all user by parameters",
+        "description": "Currently, only phoneNumber is mapped",
+        "operationId": "getAllByPhoneNumber",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelUserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get all users",
+        "operationId": "getAll_1",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["farmer", "receptionist", "sprayer", "admin"]
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelUserDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "Get all user by parameters",
+        "description": "Currently, only phoneNumber is mapped",
+        "operationId": "getAllByPhoneNumber_1",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelUserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sprayer/order/{id}/paid": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Mark payment status as complete on cash payment",
+        "operationId": "paid",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sprayer/order/{id}/confirm": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Confirm assigned order",
+        "operationId": "confirm",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/order/{id}/sprayers/{sId}": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Assign sprayer to order",
+        "operationId": "assign",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "sId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Order"],
+        "summary": "Unassign sprayer from order",
+        "operationId": "unassign",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "sId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/order": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get all orders",
+        "operationId": "getAll_5",
+        "parameters": [
+          {
+            "name": "orderStatus",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "cancelled",
+                "confirmed",
+                "assigned",
+                "in_progress",
+                "completed"
+              ]
+            }
+          },
+          {
+            "name": "paymentMethod",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["cash", "visa", "mastercard"]
+            }
+          },
+          {
+            "name": "cropType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelSprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "summary": "Create an order",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SprayOrderRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/order/": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get all orders",
+        "operationId": "getAll_6",
+        "parameters": [
+          {
+            "name": "orderStatus",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "cancelled",
+                "confirmed",
+                "assigned",
+                "in_progress",
+                "completed"
+              ]
+            }
+          },
+          {
+            "name": "paymentMethod",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["cash", "visa", "mastercard"]
+            }
+          },
+          {
+            "name": "cropType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelSprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "summary": "Create an order",
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SprayOrderRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/feedback/order/{id}": {
+      "post": {
+        "tags": ["Feedback"],
+        "summary": "Create a feedback",
+        "operationId": "create_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/order/{id}/confirm": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Confirm an on-going order",
+        "operationId": "confirm_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/order/": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get all orders",
+        "operationId": "getAll_10",
+        "parameters": [
+          {
+            "name": "orderStatus",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "cancelled",
+                "confirmed",
+                "assigned",
+                "in_progress",
+                "completed"
+              ]
+            }
+          },
+          {
+            "name": "paymentMethod",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["cash", "visa", "mastercard"]
+            }
+          },
+          {
+            "name": "cropType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelSprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "summary": "Create a new order",
+        "operationId": "create_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SprayOrderFarmerRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/order": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get all orders",
+        "operationId": "getAll_11",
+        "parameters": [
+          {
+            "name": "orderStatus",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "cancelled",
+                "confirmed",
+                "assigned",
+                "in_progress",
+                "completed"
+              ]
+            }
+          },
+          {
+            "name": "paymentMethod",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["cash", "visa", "mastercard"]
+            }
+          },
+          {
+            "name": "cropType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelSprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "summary": "Create a new order",
+        "operationId": "create_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SprayOrderFarmerRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/feedback/order/{id}": {
+      "post": {
+        "tags": ["Feedback"],
+        "summary": "Create a feedback",
+        "operationId": "create_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/crop/": {
+      "get": {
+        "tags": ["Crop"],
+        "summary": "Get all crops",
+        "operationId": "getAll_18",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CropDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Crop"],
+        "summary": "Add crop",
+        "operationId": "create_6",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CropDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CropDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/crop": {
+      "get": {
+        "tags": ["Crop"],
+        "summary": "Get all crops",
+        "operationId": "getAll_19",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CropDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Crop"],
+        "summary": "Add crop",
+        "operationId": "create_7",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CropDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CropDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get an user",
+        "operationId": "getOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sprayer/order": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "List all orders by logged-in sprayer",
+        "operationId": "getAll_2",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelSprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sprayer/order/": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "List all orders by logged-in sprayer",
+        "operationId": "getAll_3",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelSprayOrderResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/order/{id}/sprayers": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "List all sprayers by order ID",
+        "operationId": "getAll_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelUserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/order/{id}/sprayers/recommendation": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get sprayers assignment recommendation",
+        "operationId": "recommendation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/feedback": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get all feedbacks",
+        "operationId": "getAll_7",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelFeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/receptionist/feedback/": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get all feedbacks",
+        "operationId": "getAll_8",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelFeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/order/{id}/sprayers": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "List all sprayers by order ID",
+        "operationId": "getAll_9",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelUserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/order/{id}/payment-intent": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Create new Stripe payment intent",
+        "operationId": "paymentIntent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentIntentDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/order/{id}/payment-intent/{secret}": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Verify payment intent to be paid",
+        "operationId": "checkPayment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "secret",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/feedback/": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get all feedbacks",
+        "operationId": "getAll_12",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelFeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/farmer/feedback": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "Get all feedbacks",
+        "operationId": "getAll_13",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelFeedbackResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/session": {
+      "get": {
+        "tags": ["Session"],
+        "summary": "Get all available sessions",
+        "operationId": "getAll_14",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SessionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/session/": {
+      "get": {
+        "tags": ["Session"],
+        "summary": "Get all available sessions",
+        "operationId": "getAll_15",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SessionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/notification/stream": {
+      "get": {
+        "tags": ["Notification"],
+        "summary": "Subscribe to notifications server-sent events",
+        "operationId": "streamEvents",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SseEmitter"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/notification/": {
+      "get": {
+        "tags": ["Notification"],
+        "summary": "Get notification by current user",
+        "operationId": "getAll_16",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelNotificationResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/notification": {
+      "get": {
+        "tags": ["Notification"],
+        "summary": "Get notification by current user",
+        "operationId": "getAll_17",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelNotificationResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/availability": {
+      "get": {
+        "tags": ["Availability"],
+        "summary": "Get order session availability",
+        "operationId": "getAvailability",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvailabilityDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/availability/": {
+      "get": {
+        "tags": ["Availability"],
+        "summary": "Get order session availability",
+        "operationId": "getAvailability_1",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvailabilityDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserRegisterDTO": {
+        "required": ["email", "fullName", "phoneNumber"],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "fullName": {
+            "pattern": "^\\p{Lu}\\p{Ll}+(\\p{Lu}\\p{Ll}+)?( \\p{Lu}\\p{Ll}+(\\p{Lu}\\p{Ll}+)?)*$",
+            "type": "string"
+          },
+          "phoneNumber": {
+            "pattern": "^(\\+84|0)( ?\\d){9,10}$",
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "expertise": {
+            "type": "string",
+            "enum": ["apprentice", "adept", "expert"]
+          },
+          "role": {
+            "type": "string",
+            "enum": ["farmer", "receptionist", "sprayer", "admin"]
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "expertise": {
+            "type": "string",
+            "enum": ["apprentice", "adept", "expert"]
+          },
+          "role": {
+            "type": "string",
+            "enum": ["farmer", "receptionist", "sprayer", "admin"]
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CropModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minute": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "second": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nano": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "SessionDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startTime": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "endTime": {
+            "$ref": "#/components/schemas/LocalTime"
+          }
+        }
+      },
+      "SprayOrderRequestDTO": {
+        "required": [
+          "area",
+          "cropType",
+          "date",
+          "latitude",
+          "location",
+          "longitude",
+          "orderStatus",
+          "paymentMethod",
+          "session"
+        ],
+        "type": "object",
+        "properties": {
+          "farmer": {
+            "$ref": "#/components/schemas/UserDTO"
+          },
+          "receptionist": {
+            "$ref": "#/components/schemas/UserDTO"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "session": {
+            "$ref": "#/components/schemas/SessionDTO"
+          },
+          "location": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "cropType": {
+            "$ref": "#/components/schemas/CropModel"
+          },
+          "area": {
+            "minimum": 1,
+            "type": "number"
+          },
+          "orderStatus": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "cancelled",
+              "confirmed",
+              "assigned",
+              "in_progress",
+              "completed"
+            ]
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": ["pending", "paid", "failed"]
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": ["cash", "visa", "mastercard"]
+          },
+          "completionDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "SprayOrderResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "farmer": {
+            "$ref": "#/components/schemas/UserDTO"
+          },
+          "receptionist": {
+            "$ref": "#/components/schemas/UserDTO"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "session": {
+            "$ref": "#/components/schemas/SessionDTO"
+          },
+          "location": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "cropType": {
+            "$ref": "#/components/schemas/CropModel"
+          },
+          "area": {
+            "type": "number"
+          },
+          "cost": {
+            "type": "number"
+          },
+          "orderStatus": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "cancelled",
+              "confirmed",
+              "assigned",
+              "in_progress",
+              "completed"
+            ]
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": ["pending", "paid", "failed"]
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": ["cash", "visa", "mastercard"]
+          },
+          "completionDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "FeedbackRequestDTO": {
+        "type": "object",
+        "properties": {
+          "overallRating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "attentiveRating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "friendlyRating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "professionalRating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "FeedbackResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "order": {
+            "$ref": "#/components/schemas/SprayOrderResponseDTO"
+          },
+          "overallRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "attentiveRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "friendlyRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "professionalRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "SprayOrderFarmerRequestDTO": {
+        "required": [
+          "area",
+          "cropType",
+          "date",
+          "latitude",
+          "location",
+          "longitude",
+          "paymentMethod",
+          "session"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "session": {
+            "$ref": "#/components/schemas/SessionDTO"
+          },
+          "location": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "cropType": {
+            "$ref": "#/components/schemas/CropModel"
+          },
+          "area": {
+            "minimum": 1,
+            "type": "number"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": ["cash", "visa", "mastercard"]
+          },
+          "confirmed": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SprayOrderFarmerResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "receptionist": {
+            "$ref": "#/components/schemas/UserDTO"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "session": {
+            "$ref": "#/components/schemas/SessionDTO"
+          },
+          "location": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          },
+          "cropType": {
+            "$ref": "#/components/schemas/CropModel"
+          },
+          "area": {
+            "type": "number"
+          },
+          "cost": {
+            "type": "number"
+          },
+          "orderStatus": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "cancelled",
+              "confirmed",
+              "assigned",
+              "in_progress",
+              "completed"
+            ]
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": ["pending", "paid", "failed"]
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": ["cash", "visa", "mastercard"]
+          },
+          "completionDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "CropDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "UserLoginDTO": {
+        "required": ["password", "username"],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "UserLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "Pageable": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PageMetadata": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "PagedModelUserDTO": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDTO"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMetadata"
+          }
+        }
+      },
+      "PagedModelSprayOrderResponseDTO": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SprayOrderResponseDTO"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMetadata"
+          }
+        }
+      },
+      "PagedModelFeedbackResponseDTO": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackResponseDTO"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMetadata"
+          }
+        }
+      },
+      "PaymentIntentDTO": {
+        "type": "object",
+        "properties": {
+          "clientSecret": {
+            "type": "string"
+          },
+          "dpmCheckerLink": {
+            "type": "string"
+          }
+        }
+      },
+      "PagedModelSprayOrderFarmerResponseDTO": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SprayOrderFarmerResponseDTO"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMetadata"
+          }
+        }
+      },
+      "SseEmitter": {
+        "type": "object",
+        "properties": {
+          "timeout": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "NotificationResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recipient": {
+            "$ref": "#/components/schemas/UserModel"
+          },
+          "order": {
+            "$ref": "#/components/schemas/SprayOrderResponseDTO"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PagedModelNotificationResponseDTO": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationResponseDTO"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMetadata"
+          }
+        }
+      },
+      "UserModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "password": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "expertise": {
+            "type": "string",
+            "enum": ["apprentice", "adept", "expert"]
+          },
+          "role": {
+            "type": "string",
+            "enum": ["farmer", "receptionist", "sprayer", "admin"]
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AvailabilityDTO": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "sessionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "availability": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}

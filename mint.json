@@ -28,7 +28,7 @@
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "http://localhost:8080/v3/api-docs",
+      "openapi": "/api-reference/openapi.json",
       "url": "api-reference",
       "icon": "square-terminal"
     }
